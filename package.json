@@ -1,8 +1,9 @@
 {
   "name": "@kingces95/github-packages",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Package for GitHub Packages Quickstart",
   "main": "index.js",
+  "files": [ "SharePoint-AllVersions.json" ],
   "scripts": {
     "test": "exit 0"
   },
