@@ -9,6 +9,11 @@
   "scripts": {
     "test": "exit 0"
   },
+  "fidalgo": {
+      "identity": { },
+      "networking": { },
+      "cost-savings": { }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kingces95/github-packages.git"
