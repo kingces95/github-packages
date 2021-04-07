@@ -28,10 +28,32 @@
       "appServicePlanName": {
         "type": "string",
         "defaultValue": "exampleplan"
+      },
+      "webAppName": {
+        "type": "string",
+        "metadata": {
+          "description": "Base name of the resource such as web app name and app service plan "
+        },
+        "minLength": 2
+      },
+      "linuxFxVersion": {
+        "type": "string",
+        "defaultValue": "php|7.0",
+        "metadata": {
+          "description": "The Runtime stack of current web app"
+        }
+      },
+      "resourceTags": {
+          "type": "object",
+          "defaultValue": {
+              "Environment": "Dev",
+              "Project": "Tutorial"
+          }
       }
     },
     "variables": {
-      "uniqueStorageName": "[concat(parameters('storagePrefix'), uniqueString(resourceGroup().id))]"
+      "uniqueStorageName": "[concat(parameters('storagePrefix'), uniqueString(resourceGroup().id))]",
+      "webAppPortalName": "[concat(parameters('webAppName'), uniqueString(resourceGroup().id))]"
     },
     "resources": [
       {
@@ -62,7 +84,23 @@
           "targetWorkerCount": 0,
           "targetWorkerSizeId": 0
         }
-      }      
+      },
+      {
+        "type": "Microsoft.Web/sites",
+        "apiVersion": "2018-11-01",
+        "name": "[variables('webAppPortalName')]",
+        "location": "[parameters('location')]",
+        "dependsOn": [
+          "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+        ],
+        "kind": "app",
+        "properties": {
+          "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]",
+          "siteConfig": {
+              "linuxFxVersion": "[parameters('linuxFxVersion')]"
+            }
+        }
+      } 
     ],
     "outputs": {
       "storageEndpoint": {

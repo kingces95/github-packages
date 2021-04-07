@@ -9,17 +9,10 @@ az group create \
 
 qs_templateFile=./arm-template.json
 az deployment group create \
-    --name deploy3 \
-    --resource-group $qs_rg \
-    --template-file $qs_templateFile \
-    --parameters \
-        storageSKU=Standard_GRS \
-        storageName=storechrkin3210401
-
-az deployment group create \
     --name addoutput \
     --resource-group $qs_rg \
     --template-file $qs_templateFile \
     --parameters \
         storageSKU=Standard_GRS \
-        storagePrefix="chrkin56"
+        storagePrefix="chrkin56" \
+        webAppName=demoapp

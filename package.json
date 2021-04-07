@@ -1,6 +1,6 @@
 {
-  "name": "@kingces95/github-packages",
-  "version": "1.0.4",
+  "name": "@kingces95/github-packages0",
+  "version": "1.0.0",
   "description": "Package for GitHub Packages Quickstart",
   "main": "index.js",
   "files": [
